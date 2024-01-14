@@ -109,16 +109,11 @@ except json.decoder.JSONDecodeError as e:
     exit()
 
 # Sonuçlar yazdırılır
-
 if "results" in data:
-    rating = ""
     print(f"{city} şehrindeki en iyi 10 {category}  :")
     for venue in data["results"]:
         address = venue['location'].get('formatted_address') or "Adres bilgisi bulunamadı"
-        if rating:
-            rating =  venue['rating']
-        else:
-            rating = "Puanlanmamış"
+        rating = venue.get('rating', "Puanlanmamış")
         print(f"--> {venue['name']} | Adres : {address} | Ortalama Puan :  {rating}")
 else:
     print("Sonuç bulunamadı.")
