@@ -21,6 +21,14 @@ categories = [
     "Kamp alanı"
 ]
 
+
+#Uygulama çalıştırıldığında terminalde daha güzel bir karşılama için ASCII Art bastırdık
+with open("karsilama.txt", "r") as file:
+    ascii_art = file.read()
+
+print(ascii_art)
+print("Mekan Öneri Sistemine Hoş Geldiniz... ")
+
 # Kategori listesini kullanıcıya göster
 print("Kategoriler:")
 for i, category in enumerate(categories):
@@ -103,10 +111,10 @@ except json.decoder.JSONDecodeError as e:
 # Sonuçlar yazdırılır
 
 if "results" in data:
+    rating = ""
     print(f"{city} şehrindeki en iyi 10 {category}  :")
     for venue in data["results"]:
         address = venue['location'].get('formatted_address') or "Adres bilgisi bulunamadı"
-        rating = ""
         if rating:
             rating =  venue['rating']
         else:
